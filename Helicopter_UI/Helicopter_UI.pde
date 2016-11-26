@@ -20,7 +20,7 @@ void setup() {
 
   size(600,600);
   println(Serial.list());
-  arduinoPort = new Serial(this, "/dev/tty.usbmodemfd121", 9600); //Use correct port
+  arduinoPort = new Serial(this, "/dev/cu.usbmodem1421", 9600); //Use correct port
   
   gauge_img = loadImage("gauge.png");
   
@@ -265,4 +265,3 @@ void drawArrow(int cx, int cy, int len, float angle) {
   popMatrix();
   
 }
-

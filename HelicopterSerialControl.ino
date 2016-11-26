@@ -33,7 +33,6 @@ const int ONE_LOW_DURATION = 600;
 byte yawCmd, pitchCmd, throttleCmd, trimCmd;
 
 
-
 void setup() {
 
   Serial.begin(9600);
@@ -170,7 +169,7 @@ void serialEvent() {
     case '8':
     case '9':
       Serial.print("Throttle is: ");
-      throttleCmd = atoi(&cmd) * 14; // Just converts char to const char*
+      throttleCmd = atoi(&cmd) * 14; // Converts char to const char*
                                      // then scales appropriately
       Serial.println(throttleCmd);   
       break;
@@ -180,15 +179,15 @@ void serialEvent() {
       break;
       
   }
-
+  
 }
 
 // "Header" sequence
 void sendHeader() {
 
-  TCCR2A |= _BV(COM2B1);
+  TCCR2A |= _BV(COM2B1);                // enable pin 3 PWM output
   delayMicroseconds(HEADER_DURATION);
-  TCCR2A &= ~_BV(COM2B1);
+  TCCR2A &= ~_BV(COM2B1);               // disable pin 3 PWM output
   delayMicroseconds(HEADER_DURATION);
   TCCR2A |= _BV(COM2B1);
   delayMicroseconds(HIGH_DURATION);
