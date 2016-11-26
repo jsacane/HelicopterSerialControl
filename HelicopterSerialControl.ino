@@ -50,9 +50,9 @@ void setup() {
   Timer1.initialize(DURATION);
   Timer1.attachInterrupt(sendCommand);
   
-  // Setup PWM: f=38Khz PWM=0.5  
+  // Setup PWM: f=38kHz PWM=50% 
   byte v = 8000 / 38;
-  TCCR2A = _BV(WGM20);
+  TCCR2A = _BV(WGM20);              // sets prescale factor
   TCCR2B = _BV(WGM22) | _BV(CS20); 
   OCR2A = v;
   OCR2B = v / 2;
